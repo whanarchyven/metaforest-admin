@@ -1,8 +1,9 @@
 import './globals.css';
 import React from 'react';
 import type { Metadata } from 'next';
-import SmoothScroll from '@/shared/ui/SmoothScroll/SmoothScroll';
 import { RemResizeScript } from '@/features/rem-resize';
+import { cva } from 'class-variance-authority';
+import Navbar from '@/widgets/navbar/ui/Navbar';
 
 // import 'swiper/css';
 // import 'swiper/css/navigation';
@@ -34,6 +35,23 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const cvaRoot = cva([
+    'projectRoot-cvaRoot',
+    'p-2',
+    'w-full min-h-screen',
+    'grid grid-cols-6 gap-4',
+    'bg-rootGradient',
+  ]);
+
+  const cvaAside = cva(['col-span-1']);
+
+  const cvaContent = cva([
+    'bg-white bg-opacity-50 backdrop-blur-sm',
+    'p-2',
+    'rounded-xl',
+    'overflow-y-scroll h-full',
+  ]);
+
   return (
     <html lang="ru">
       <head>
@@ -44,10 +62,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
           endScaleBottomWidth={1024}
         />
       </head>
-      <body>
-        <SmoothScroll>
-          <div id="app">{children}</div>
-        </SmoothScroll>
+      <body className={'overflow-y-clip'}>
+        <div className={cvaRoot()} id="app">
+          <div className={cvaAside()}>
+            <Navbar />
+          </div>
+          <div className={'col-span-5 py-2 -mt-2 max-h-screen'}>
+            <div className={cvaContent()}>{children}</div>
+          </div>
+        </div>
       </body>
     </html>
   );

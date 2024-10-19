@@ -6,6 +6,7 @@ import { screens } from './tailwind/screens';
 import { columns } from './tailwind/columns';
 import { plugins } from './tailwind/plugins';
 import { animations } from './tailwind/animations';
+import { backgrounds } from './tailwind/backgrounds';
 
 const config: Config = {
   content: [
@@ -20,6 +21,7 @@ const config: Config = {
       ...colors,
       ...typography,
       ...animations,
+      ...backgrounds,
     },
     ...spacing,
     ...screens,

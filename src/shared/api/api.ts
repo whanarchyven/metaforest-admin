@@ -1,3 +1,4 @@
+export const apiUrl = process.env.NEXT_PUBLIC_FRONT_API_URL;
 export type Error = {
   message: string;
   code: number;
@@ -13,5 +14,7 @@ export interface IResponse<D = any> {
 }
 
 export const API = {
-  getTestApiEndpoint: `/endpoint/name`,
+  getGameSessions: (slug?: string) =>
+    `${apiUrl}/admin/games?telegram_id=${slug}`,
+  getGameSession: (slug?: string) => `${apiUrl}/admin/games/${slug}`,
 };
