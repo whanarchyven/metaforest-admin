@@ -9,6 +9,15 @@ const moduleExports = {
     deviceSizes: [767, 980, 1156, 1400, 1920],
     formats: ['image/webp'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/players',
+        permanent: true,
+      },
+    ];
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
