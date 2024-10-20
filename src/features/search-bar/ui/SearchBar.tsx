@@ -8,6 +8,8 @@ const cvaRoot = cva(['searchBar-cvaRoot', 'flex items-center gap-2']);
 
 const cvaInput = cva([
   'outline-none',
+  'border-2',
+  'border-cBlack',
   'p-1',
   'rounded-xl',
   'text-base',

@@ -46,7 +46,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   const cvaAside = cva(['col-span-1']);
 
   const cvaContent = cva([
-    'bg-white bg-opacity-50 backdrop-blur-sm',
+    'bg-white backdrop-blur-sm',
     'p-2',
     'rounded-xl',
     'overflow-y-scroll h-full',

@@ -5,6 +5,7 @@ import { IMetaforestLootbox } from '@/shared/types/backend/MetaforestLootBox/typ
 
 export interface IMetaforestGameEngine {
   //назвать по-лучше
+  _id?: string;
   activeBunny: IMetaforestBunny;
   bunnies: IMetaforestBunny[];
   user: IMetaforestPlayer;

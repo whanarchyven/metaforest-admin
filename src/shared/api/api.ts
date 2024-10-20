@@ -17,4 +17,6 @@ export const API = {
   getGameSessions: (slug?: string) =>
     `${apiUrl}/admin/games?telegram_id=${slug}`,
   getGameSession: (slug?: string) => `${apiUrl}/admin/games/${slug}`,
+  updateGameSession: (slug?: string) => `${apiUrl}/admin/games/${slug}/update`,
+  addLootbox: `${apiUrl}/add-lootbox`,
 };

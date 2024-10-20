@@ -19,7 +19,7 @@ const Navbar: FC = () => {
     'flex flex-col gap-2',
     'p-2',
     'rounded-xl',
-    'bg-white bg-opacity-50 backdrop-blur-sm',
+    'bg-white backdrop-blur-sm',
     'shadow-xl',
   ]);
 
@@ -46,6 +46,12 @@ const Navbar: FC = () => {
       name: 'Мир',
       link: '/world',
       icon: 'world',
+      isDisabled: true,
+    },
+    {
+      name: 'Помогите...',
+      link: '/help/me/please/i/wanna/die/im/tired/',
+      icon: 'help',
       isDisabled: true,
     },
   ];
@@ -105,13 +111,13 @@ const Navbar: FC = () => {
           <Link
             href={'/players'}
             className={
-              'flex items-center gap-1 justify-center cursor-pointer bg-white p-1 pl-0.8 pr-1.2 rounded-full'
+              'flex items-center gap-1 justify-center cursor-pointer bg-cBlack p-1 pl-0.8 pr-1.2 rounded-full'
             }>
-            <ArrowBack className={'fill-cBlack w-1'} />
+            <ArrowBack className={'fill-cWhite w-1'} />
           </Link>
           <div
             className={
-              'p-1 bg-white rounded-xl text-[1.1rem] w-full truncate font-bold flex items-center justify-center'
+              'p-1 bg-cBlack text-white rounded-xl text-[1.1rem] w-full truncate font-bold flex items-center justify-center'
             }>
             {user.userInfo.username}
           </div>

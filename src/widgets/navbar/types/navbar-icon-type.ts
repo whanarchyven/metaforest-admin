@@ -5,4 +5,5 @@ export type NavbarIconType =
   | 'balance'
   | 'social'
   | 'resources'
-  | 'baseParams';
+  | 'baseParams'
+  | 'help';

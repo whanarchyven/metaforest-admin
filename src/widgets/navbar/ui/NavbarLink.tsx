@@ -12,6 +12,7 @@ import BalanceIcon from '@@/public/icons/navbar/balance.svg';
 import BaseParamsIcon from '@@/public/icons/navbar/base_params.svg';
 import ResourcesIcon from '@@/public/icons/navbar/resources.svg';
 import SocialIcon from '@@/public/icons/navbar/social.svg';
+import HelpIcon from '@@/public/icons/navbar/help.svg';
 
 export interface NavbarLinkInterface extends VariantProps<typeof cvaRoot> {
   name: string;
@@ -20,12 +21,16 @@ export interface NavbarLinkInterface extends VariantProps<typeof cvaRoot> {
 }
 
 const cvaRoot = cva(
-  ['navbarLink-cvaRoot', 'p-0.5 rounded-xl', 'flex items-center gap-2'],
+  [
+    'navbarLink-cvaRoot',
+    'p-0.5 rounded-xl',
+    'flex items-center gap-2 border-2',
+  ],
   {
     variants: {
       isActive: {
-        true: 'bg-cBlack',
-        false: 'bg-cWhite',
+        true: 'bg-cBlack border-transparent',
+        false: 'bg-cWhite border-cBlack',
       },
       isDisabled: {
         true: 'opacity-50',
@@ -36,7 +41,7 @@ const cvaRoot = cva(
   }
 );
 
-const cvaTitle = cva(['navbarLink__title-cvaTitle', 'font-bold text-base'], {
+const cvaTitle = cva(['navbarLink__title-cvaTitle', 'font-bold text-sm'], {
   variants: {
     isActive: {
       true: 'text-cWhite',
@@ -70,6 +75,8 @@ const getLinkIcon = (linkId: NavbarIconType, isActive: boolean) => {
       return <BaseParamsIcon className={cvaIcon({ isActive })} />;
     case 'resources':
       return <ResourcesIcon className={cvaIcon({ isActive })} />;
+    case 'help':
+      return <HelpIcon className={cvaIcon({ isActive })} />;
   }
 };
 
