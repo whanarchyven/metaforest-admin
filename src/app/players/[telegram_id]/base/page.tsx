@@ -29,6 +29,7 @@ export default async function Home({
             {session.user.userInfo.username} - Базовые параметры
           </h3>
           <BunnyDropdown
+            telegramId={session.user.userInfo.id}
             bunnies={session.bunnies}
             activeBunny={session.activeBunny}
           />
