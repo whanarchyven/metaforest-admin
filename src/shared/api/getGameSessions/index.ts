@@ -4,7 +4,6 @@ import { IGameSession } from '@/shared/types/gameSessions';
 
 export const getGameSessions = async (telegram_id?: string) => {
   try {
-    console.log(telegram_id);
     const result = await axiosInstance.get<IGameSession[]>(
       API.getGameSessions(telegram_id ?? '')
     );

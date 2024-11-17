@@ -3,10 +3,8 @@ import { IMetaforestKing } from '@/shared/types/backend/MetaforestKing/types/IMe
 import { IMetaforestBuilding } from '@/shared/types/backend/MetaforestBuilding/types/IMetaforestBuilding';
 
 export interface IMetaforestSectorPlace {
-  idx: number;
-  uid: string;
-  isFree: boolean;
-  cost: number;
-  owner: IMetaforestPlayer | IMetaforestKing;
-  building?: IMetaforestBuilding;
+  idx: string;
+  owner: string | null;
+  sector_idx: string;
+  building: string;
 }

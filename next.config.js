@@ -1,6 +1,9 @@
 const SENTRY_PROJECT = process.env.SENTRY_PROJECT;
 const SENTRY_ENABLED = Boolean(Number(process.env.ENABLE_SENTRY));
 
+const PROXY_PATH = process.env.NEXT_PUBLIC_FRONT_PROXY_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_FRONT_API_URL;
+
 /** @type {import('next').NextConfig} */
 const moduleExports = {
   reactStrictMode: false,
@@ -15,6 +18,14 @@ const moduleExports = {
         source: '/',
         destination: '/players',
         permanent: true,
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/api/proxy/:path*', // Захватываем маршруты с /api/proxy
+        destination: 'http://localhost:3001/:path*', // Перенаправляем на API
       },
     ];
   },

@@ -10,11 +10,8 @@ const baseHeaders = new Headers();
 baseHeaders.set('Content-Type', 'application/json');
 baseHeaders.set('Accept', 'application/json');
 
-if (BASIC_AUTH_LOGIN && BASIC_AUTH_PASSWORD) {
-  baseHeaders.set(
-    'Authorization',
-    `Basic ${base64.encode(`${BASIC_AUTH_LOGIN}:${BASIC_AUTH_PASSWORD}`)}`
-  );
+if (BASIC_AUTH_LOGIN) {
+  baseHeaders.set(`Authorization`, `${BASIC_AUTH_LOGIN}`);
 }
 
 export const baseAxiosHeaders = new AxiosHeaders();

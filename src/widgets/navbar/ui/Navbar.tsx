@@ -12,6 +12,7 @@ import Link from 'next/link';
 import ArrowBack from '@@/public/icons/arrow_back.svg';
 
 import { getGameSessionProxy } from '@/shared/api/getGameSessionProxy';
+import { getGameSession } from '@/shared/api/getGameSession';
 
 const Navbar: FC = () => {
   const cvaRoot = cva([
@@ -44,9 +45,9 @@ const Navbar: FC = () => {
     },
     {
       name: 'Мир',
-      link: '/world',
+      link: '/sector',
       icon: 'world',
-      isDisabled: true,
+      isDisabled: false,
     },
     {
       name: 'Помогите...',
@@ -91,7 +92,7 @@ const Navbar: FC = () => {
   useEffect(() => {
     if (telegram_id) {
       console.log(telegram_id);
-      getGameSessionProxy(telegram_id as string).then((res) => {
+      getGameSession(telegram_id as string).then((res) => {
         console.log(res, 'AAAA');
         setUser({ userInfo: res.user.userInfo, wallet: res.user.wallet });
       });
