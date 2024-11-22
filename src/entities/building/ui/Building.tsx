@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { cva } from 'class-variance-authority';
 import { getBuildingName } from '@/shared/utils/getBuildingName';
 import { getTasks } from '@/shared/api/getTasks';
+import DeleteBtn from '@/features/delete-btn';
 
 const Building: FC<{ building_idx: string }> = async ({ building_idx }) => {
   const building = await getBuilding(building_idx);
@@ -32,6 +33,7 @@ const Building: FC<{ building_idx: string }> = async ({ building_idx }) => {
           href={`/sector/${building.sector_idx}/sector-place/${building.sector_place_idx}/building/${building.idx}`}>
           Управление заданиями
         </Link>
+        <DeleteBtn deleteFunc={'deleteBuilding'} idx={building.idx} />
       </div>
     </div>
   );

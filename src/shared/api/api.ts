@@ -23,6 +23,7 @@ export const API = {
   getSector: (sector_idx: string) => `/admin/sector/${sector_idx}`,
   createSector: `/admin/sector/create`,
   updateSector: (sector_idx: string) => `/admin/sector/${sector_idx}/update`,
+  deleteSector: (sector_idx: string) => `/admin/sector/${sector_idx}/delete`,
   getSectorPlaces: (sector_idx: string) => `/admin/sector/${sector_idx}/place/`,
   getSectorBuildings: (sector_idx: string) =>
     `/admin/sector/${sector_idx}/buildings/`,
@@ -30,12 +31,17 @@ export const API = {
     `/admin/sector/${sector_idx}/place/create`,
   getSectorPlace: (sector_place_idx: string) =>
     `/admin/place/${sector_place_idx}`,
+  deleteSectorPlace: (sector_place_idx: string) =>
+    `/admin/place/${sector_place_idx}/delete`,
   createBuilding: (place_idx: string) =>
     `/admin/place/${place_idx}/building/create`,
   getBuilding: (building_idx: string) => `/admin/building/${building_idx}/`,
+  deleteBuilding: (building_idx: string) =>
+    `/admin/building/${building_idx}/delete`,
   createTask: (building_idx: string) =>
     `/admin/building/${building_idx}/task/create`,
   getTasks: (building_idx: string) => `/admin/building/${building_idx}/task/`,
   getTask: (task_idx: string) => `/admin/task/${task_idx}/`,
   updateTask: (task_idx: string) => `/admin/task/${task_idx}/update/`,
+  deleteTask: (task_idx: string) => `/admin/task/${task_idx}/delete/`,
 };

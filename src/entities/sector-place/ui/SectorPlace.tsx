@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { IMetaforestSectorPlace } from '@/shared/types/backend/MetaforestSectorPlace/types/IMetaforestSectorPlace';
 import { getSectorPlace } from '@/shared/api/getSectorPlace';
 import Building from '@/entities/building/ui/Building';
+import DeleteBtn from '@/features/delete-btn';
 
 const SectorPlace: FC<{ sector_place_idx: string }> = async ({
   sector_place_idx,
@@ -25,6 +26,7 @@ const SectorPlace: FC<{ sector_place_idx: string }> = async ({
       <div className={'flex p-1 flex-col gap-1'}>
         <p>Владение #{sectorPlace.idx}</p>
         <p>Владелец: {sectorPlace.owner ?? 'отсутствует'}</p>
+        <DeleteBtn deleteFunc={'deleteSectorPlace'} idx={sectorPlace.idx} />
       </div>
       <div className={'flex p-1 bg-white rounded-xl flex-col gap-2'}>
         <div className={'flex border-b-2 pb-1 justify-between'}>

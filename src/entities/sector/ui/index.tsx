@@ -4,6 +4,8 @@ import { imagePrefix } from '@/shared/utils/imagePrefix';
 import { cva } from 'class-variance-authority';
 import clsx from 'clsx';
 import Link from 'next/link';
+import DeleteBtn from '@/features/delete-btn';
+import { deleteSector } from '@/shared/api/deleteSector';
 
 const Sector: FC<IMetaforestSector> = ({
   name,
@@ -60,6 +62,7 @@ const Sector: FC<IMetaforestSector> = ({
       <Link className={cvaButton()} href={`/sector/${idx}`}>
         Управлять
       </Link>
+      <DeleteBtn deleteFunc={'deleteSector'} idx={idx} />
     </div>
   );
 };

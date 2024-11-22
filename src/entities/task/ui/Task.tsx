@@ -4,6 +4,7 @@ import { imagePrefix } from '@/shared/utils/imagePrefix';
 import { cva } from 'class-variance-authority';
 import { parseISODuration } from '@/shared/utils/parseISODuration';
 import Link from 'next/link';
+import DeleteBtn from '@/features/delete-btn';
 
 const Task: FC<IMetaforestTask> = ({
   idx,
@@ -83,6 +84,7 @@ const Task: FC<IMetaforestTask> = ({
         href={`/sector/${sector_idx}/task/${idx}/edit`}>
         Редактировать
       </Link>
+      <DeleteBtn deleteFunc={'deleteTask'} idx={idx} />
     </div>
   );
 };
