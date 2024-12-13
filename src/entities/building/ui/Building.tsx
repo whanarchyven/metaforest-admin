@@ -9,6 +9,7 @@ import DeleteBtn from '@/features/delete-btn';
 const Building: FC<{ building_idx: string }> = async ({ building_idx }) => {
   const building = await getBuilding(building_idx);
   const tasks = await getTasks(building_idx);
+  console.log(building, 'BUILDING', building.type, building.level);
   const cvaButton = cva([
     'px-2 h-3 bg-cBlack flex rounded-xl text-sm text-cWhite justify-center items-center',
   ]);

@@ -6,8 +6,9 @@ export async function POST(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  console.log('PARAMS', 'SUKA AUE');
   const { id } = params;
-  console.log('PARAMS', id);
+  console.log('PARAMS', id, 'SUKA AUE');
 
   const body = await request.json();
 
