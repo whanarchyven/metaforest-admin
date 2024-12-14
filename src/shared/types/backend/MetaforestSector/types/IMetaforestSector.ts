@@ -14,4 +14,34 @@ export interface IMetaforestSector {
   };
   level: number;
   image?: string;
+  resources: {
+    carrots: {
+      balance: 0;
+    };
+    wood: {
+      balance: 0;
+    };
+    stone: {
+      balance: 0;
+    };
+    ether: {
+      balance: 0;
+    };
+    wheat: {
+      balance: 0;
+    };
+    timber: {
+      balance: 0;
+    };
+    iron: {
+      balance: 0;
+    };
+    cake: {
+      balance: 0;
+    };
+    beer: {
+      balance: 0;
+    };
+  };
+  has_store: false;
 }

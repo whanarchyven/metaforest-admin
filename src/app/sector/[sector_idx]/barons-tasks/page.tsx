@@ -9,6 +9,9 @@ import { imagePrefix } from '@/shared/utils/imagePrefix';
 import SectorPlace from '@/entities/sector-place/ui/SectorPlace';
 import { createSectorPlace } from '@/shared/api/createSectorPlace';
 import CreateSectorPlaceBtn from '@/features/create-sector-place-btn';
+import { getBuildTasksBySectorIdx } from '@/shared/api/getBuildTasksBySectorIdx';
+import BuildingTask from '@/entities/build-task/ui/BuildingTask';
+import Button from '@/shared/ui/Button/Button';
 
 export default async function Home({
   params: { sector_idx },
@@ -26,6 +29,8 @@ export default async function Home({
   ]);
 
   const sector = await getSector(sector_idx);
+  const buildTasks = await getBuildTasksBySectorIdx(sector_idx);
+
   const cvaTextRow = cva(['text-base']);
   const cvaImageContainer = cva(['w-full aspect-square rounded-xl']);
 
@@ -33,18 +38,11 @@ export default async function Home({
     <main className={cvaRoot()}>
       <div className={cvaHeader()}>
         <h1 className={cvaTitle()}>
-          {sector.name}, сектор №{sector.numberIdx}
+          {sector.name}, сектор №{sector.numberIdx} - Задания барона
         </h1>
-        <div className={'flex items-center gap-2'}>
-          <Link
-            className={clsx(cvaButton(), '!bg-green-500')}
-            href={`/sector/${sector_idx}/barons-tasks`}>
-            Задания барона
-          </Link>
-          <Link className={cvaButton()} href={`/sector/${sector_idx}/edit`}>
-            Редактировать сектор
-          </Link>
-        </div>
+        <Link className={cvaButton()} href={`/sector/${sector_idx}/edit`}>
+          Редактировать сектор
+        </Link>
       </div>
       <div className={'grid grid-cols-3 gap-8'}>
         <div className={'flex flex-col gap-1'}>
@@ -56,35 +54,39 @@ export default async function Home({
           ) : (
             <div className={clsx(cvaImageContainer(), 'bg-gray-400')}></div>
           )}
-          <p className={cvaTextRow()}>
-            <strong>idx:</strong> {sector.idx}
-          </p>
-          <p className={cvaTextRow()}>
-            <strong>имя:</strong> {sector.name}
-          </p>
-          <p className={cvaTextRow()}>
-            <strong>тип местности:</strong> {sector.type}
-          </p>
-          <p className={cvaTextRow()}>
-            <strong>уровень:</strong> {sector.level}
-          </p>
-          <p className={cvaTextRow()}>
-            <strong>влияние (red/blue):</strong> {sector.authority.red}/
-            {sector.authority.blue}
-          </p>
-        </div>
-        <div className={'col-span-2 h-full'}>
-          <div className={'flex justify-between mb-2 items-center'}>
-            <p className={'text-base font-bold'}>
-              Земли в секторе: {sector.places.length}
-            </p>
-            <CreateSectorPlaceBtn sector_idx={sector.idx} />
-          </div>
-          <div className={'grid grid-cols-1 gap-4'}>
-            {sector.places.map((sector, counter) => {
-              return <SectorPlace key={counter} sector_place_idx={sector} />;
+          <p>Баланс ресурсов в секторе:</p>
+          <div className={'flex flex-col gap-0.5 text-base'}>
+            {Object.entries(sector.resources).map((resource) => {
+              return (
+                <p key={resource[0]}>
+                  <strong>{resource[0]}:</strong> {resource[1].balance}
+                </p>
+              );
             })}
           </div>
+        </div>
+
+        <div>
+          <div className={'flex mb-1 justify-between items-center'}>
+            <p className={''}>Задания на постройку</p>
+            <Link
+              className={cvaButton()}
+              href={`/sector/${sector_idx}/barons-tasks/create`}>
+              Создать
+            </Link>
+          </div>
+          <div className={'flex flex-col gap-1'}>
+            {buildTasks.map((task) => {
+              return (
+                <div key={task.idx}>
+                  <BuildingTask task={task} />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div>
+          <p>Задания на сбор</p>
         </div>
       </div>
     </main>

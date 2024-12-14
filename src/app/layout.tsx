@@ -22,7 +22,7 @@ import Navbar from '@/widgets/navbar/ui/Navbar';
 //   variable: '--base-font',
 // });
 // ? clsx(Roboto.variable) для body
-
+export const dynamic = 'force-dynamic';
 export const metadata: Metadata = {
   title: 'Next.js Project',
   description:
@@ -75,5 +75,3 @@ export default function RootLayout({ children }: RootLayoutProps) {
     </html>
   );
 }
-
-export const dynamic = 'force-dynamic';

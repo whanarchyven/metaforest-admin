@@ -16,8 +16,6 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@chakra-ui/icons": "^2.2.4",
-    "@chakra-ui/react": "1.7",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@popperjs/core": "^2.11.8",

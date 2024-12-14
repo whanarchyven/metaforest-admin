@@ -44,4 +44,9 @@ export const API = {
   getTask: (task_idx: string) => `/admin/task/${task_idx}/`,
   updateTask: (task_idx: string) => `/admin/task/${task_idx}/update/`,
   deleteTask: (task_idx: string) => `/admin/task/${task_idx}/delete/`,
+  getBuildTaskBySectorIdx: (sector_idx: string) => `/build-tasks/${sector_idx}`,
+  createBuildingTask: (sector_place_idx: string) =>
+    `/admin/place/${sector_place_idx}/building-task/create`,
+  getAvailableSectorPlaces: (sector_idx: string) =>
+    `/admin/sector/${sector_idx}/available-places`,
 };
