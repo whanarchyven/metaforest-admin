@@ -5,8 +5,12 @@ import { cva } from 'class-variance-authority';
 import { getBuildingName } from '@/shared/utils/getBuildingName';
 import { getTasks } from '@/shared/api/getTasks';
 import DeleteBtn from '@/features/delete-btn';
+import clsx from 'clsx';
 
-const Building: FC<{ building_idx: string }> = async ({ building_idx }) => {
+const Building: FC<{ building_idx: string; isUpgrading?: boolean }> = async ({
+  building_idx,
+  isUpgrading,
+}) => {
   const building = await getBuilding(building_idx);
   const tasks = await getTasks(building_idx);
   console.log(building, 'BUILDING', building.type, building.level);
@@ -19,10 +23,21 @@ const Building: FC<{ building_idx: string }> = async ({ building_idx }) => {
         <p className={'text-[1.4rem]'}>
           {getBuildingName(building.type)}, {building.level} LVL
         </p>
-        <img
-          src={`/images/buildings/${building.type}.png`}
-          className={'w-full aspect-square rounded-xl'}
-        />
+        <div
+          className={'relative w-full aspect-square rounded-xl overflow-clip'}>
+          <img
+            src={`/images/buildings/${building.type}.png`}
+            className={'w-full h-full'}
+          />
+          {isUpgrading ? (
+            <div
+              className={
+                'absolute left-0 top-0 bg-green-500 bg-opacity-50 w-full h-full flex items-center justify-center'
+              }>
+              <p className={'font-bold text-white -rotate-45'}>На апгрейде</p>
+            </div>
+          ) : null}
+        </div>
         <p className={'text-[1.4rem]'}>
           Владелец: {building.owner ?? 'отсутствует'}
         </p>
@@ -35,6 +50,13 @@ const Building: FC<{ building_idx: string }> = async ({ building_idx }) => {
           Управление заданиями
         </Link>
         <DeleteBtn deleteFunc={'deleteBuilding'} idx={building.idx} />
+        {!isUpgrading ? (
+          <Link
+            className={clsx(cvaButton(), '!bg-green-500')}
+            href={`/sector/${building.sector_idx}/barons-tasks/${building.idx}/update/`}>
+            Апгрейд
+          </Link>
+        ) : null}
       </div>
     </div>
   );

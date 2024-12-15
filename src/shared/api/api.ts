@@ -31,6 +31,8 @@ export const API = {
     `/admin/sector/${sector_idx}/place/create`,
   getSectorPlace: (sector_place_idx: string) =>
     `/admin/place/${sector_place_idx}`,
+  getBuildTaskBySectorPlaceIdx: (sector_place_idx: string) =>
+    `/admin/place/${sector_place_idx}/task`,
   deleteSectorPlace: (sector_place_idx: string) =>
     `/admin/place/${sector_place_idx}/delete`,
   createBuilding: (place_idx: string) =>
@@ -47,6 +49,8 @@ export const API = {
   getBuildTaskBySectorIdx: (sector_idx: string) => `/build-tasks/${sector_idx}`,
   createBuildingTask: (sector_place_idx: string) =>
     `/admin/place/${sector_place_idx}/building-task/create`,
+  upgradeBuildingTask: (building_idx: string) =>
+    `/admin/building/${building_idx}/upgrade-task`,
   getAvailableSectorPlaces: (sector_idx: string) =>
     `/admin/sector/${sector_idx}/available-places`,
 };

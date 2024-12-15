@@ -8,6 +8,8 @@ import { IMetaforestSectorPlace } from '@/shared/types/backend/MetaforestSectorP
 import { getSectorPlace } from '@/shared/api/getSectorPlace';
 import Building from '@/entities/building/ui/Building';
 import DeleteBtn from '@/features/delete-btn';
+import { getBuildTaskBySectorPlaceIdx } from '@/shared/api/getBuildTaskBySectorPlaceIdx';
+import BuildingTask from '@/entities/build-task/ui/BuildingTask';
 
 const SectorPlace: FC<{ sector_place_idx: string }> = async ({
   sector_place_idx,
@@ -18,6 +20,9 @@ const SectorPlace: FC<{ sector_place_idx: string }> = async ({
     'px-2 h-3 bg-cBlack flex rounded-xl text-sm text-cWhite justify-center items-center',
   ]);
 
+  const task = await getBuildTaskBySectorPlaceIdx(sector_place_idx);
+  const isTaskActive = task.is_available;
+
   return (
     <div
       className={
@@ -27,6 +32,12 @@ const SectorPlace: FC<{ sector_place_idx: string }> = async ({
         <p>Владение #{sectorPlace.idx}</p>
         <p>Владелец: {sectorPlace.owner ?? 'отсутствует'}</p>
         <DeleteBtn deleteFunc={'deleteSectorPlace'} idx={sectorPlace.idx} />
+        {task && isTaskActive && (
+          <div className={'flex flex-col gap-2'}>
+            <p>Задание во владении:</p>
+            <BuildingTask task={task} />
+          </div>
+        )}
       </div>
       <div className={'flex p-1 bg-white rounded-xl flex-col gap-2'}>
         <div className={'flex border-b-2 pb-1 justify-between'}>
@@ -40,7 +51,10 @@ const SectorPlace: FC<{ sector_place_idx: string }> = async ({
           ) : null}
         </div>
         {sectorPlace.building != null ? (
-          <Building building_idx={sectorPlace.building} />
+          <Building
+            isUpgrading={task.building_idx != null && task.is_available}
+            building_idx={sectorPlace.building}
+          />
         ) : (
           <p className={'text-[1.4rem]'}>Отсутствует</p>
         )}
