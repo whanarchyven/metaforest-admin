@@ -12,6 +12,8 @@ import CreateSectorPlaceBtn from '@/features/create-sector-place-btn';
 import { getBuildTasksBySectorIdx } from '@/shared/api/getBuildTasksBySectorIdx';
 import BuildingTask from '@/entities/build-task/ui/BuildingTask';
 import Button from '@/shared/ui/Button/Button';
+import { getResourceTasksBySectorIdx } from '@/shared/api/getResourceTasksBySectorIdx';
+import ResourceTask from '@/entities/resource-task/ui/BuildingTask';
 
 export default async function Home({
   params: { sector_idx },
@@ -30,6 +32,8 @@ export default async function Home({
 
   const sector = await getSector(sector_idx);
   const buildTasks = await getBuildTasksBySectorIdx(sector_idx);
+  const resourceTasks = await getResourceTasksBySectorIdx(sector_idx);
+  console.log(resourceTasks);
 
   const cvaTextRow = cva(['text-base']);
   const cvaImageContainer = cva(['w-full aspect-square rounded-xl']);
@@ -86,7 +90,23 @@ export default async function Home({
           </div>
         </div>
         <div>
-          <p>Задания на сбор</p>
+          <div className={'flex mb-1 justify-between items-center'}>
+            <p className={''}>Задания на сбор ресурсов</p>
+            <Link
+              className={cvaButton()}
+              href={`/sector/${sector_idx}/barons-tasks/create-resource-task`}>
+              Создать
+            </Link>
+          </div>
+          <div className={'flex flex-col gap-1'}>
+            {resourceTasks.map((task) => {
+              return (
+                <div key={task.idx}>
+                  <ResourceTask task={task} />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </main>

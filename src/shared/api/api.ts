@@ -47,8 +47,12 @@ export const API = {
   updateTask: (task_idx: string) => `/admin/task/${task_idx}/update/`,
   deleteTask: (task_idx: string) => `/admin/task/${task_idx}/delete/`,
   getBuildTaskBySectorIdx: (sector_idx: string) => `/build-tasks/${sector_idx}`,
+  getResourceTaskBySectorIdx: (sector_idx: string) =>
+    `/resource-tasks/${sector_idx}`,
   createBuildingTask: (sector_place_idx: string) =>
     `/admin/place/${sector_place_idx}/building-task/create`,
+  createResourceTask: (sector_idx: string) =>
+    `/admin/sector/${sector_idx}/create-resource-task`,
   upgradeBuildingTask: (building_idx: string) =>
     `/admin/building/${building_idx}/upgrade-task`,
   getAvailableSectorPlaces: (sector_idx: string) =>
