@@ -6,7 +6,9 @@ import { deleteBuilding } from '@/shared/api/deleteBuilding';
 import { deleteSector } from '@/shared/api/deleteSector';
 import { deleteSectorPlace } from '@/shared/api/deleteSectorPlace';
 import { deleteTask } from '@/shared/api/deleteTask';
-
+import { revertUpgradeTask } from '@/shared/api/revertUpgradeTask';
+import { deleteResourceTask } from '@/shared/api/deleteResourceTask';
+import { deleteBuildingTask } from '@/shared/api/deleteBuildingTask';
 interface DeleteBtnInterface {
   deleteFunc: deleteMethods;
   idx: string;
@@ -16,7 +18,10 @@ export type deleteMethods =
   | 'deleteSector'
   | 'deleteTask'
   | 'deleteSectorPlace'
-  | 'deleteBuilding';
+  | 'deleteBuilding'
+  | 'revertUpgradeTask'
+  | 'deleteResourceTask'
+  | 'deleteBuildingTask';
 
 const DeleteBtn: FC<DeleteBtnInterface> = ({ deleteFunc, idx }) => {
   const executeDelete = async () => {
@@ -29,6 +34,12 @@ const DeleteBtn: FC<DeleteBtnInterface> = ({ deleteFunc, idx }) => {
         return await deleteSectorPlace(idx);
       case 'deleteTask':
         return await deleteTask(idx);
+      case 'revertUpgradeTask':
+        return await revertUpgradeTask(idx);
+      case 'deleteResourceTask':
+        return await deleteResourceTask(idx);
+      case 'deleteBuildingTask':
+        return await deleteBuildingTask(idx);
       default:
         return async () => {
           alert('Unknown method');
@@ -44,7 +55,7 @@ const DeleteBtn: FC<DeleteBtnInterface> = ({ deleteFunc, idx }) => {
       onClick={async () => {
         await executeDelete().then((res) => {
           console.log(res);
-          alert(res.message);
+          alert(res.message ?? 'completed');
           window.location.reload();
         });
       }}

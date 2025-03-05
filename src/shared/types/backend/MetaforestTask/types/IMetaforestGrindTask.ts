@@ -23,4 +23,5 @@ export interface IMetaforestGrindTask {
   building_idx: string;
   bunny_workers: string[];
   bunny_workers_limit: number;
+  mfgt_profit: number;
 }

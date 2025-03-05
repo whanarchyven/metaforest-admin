@@ -19,6 +19,7 @@ interface TaskEditFormProps {
     requirements: Array<{ resource_type: string; amount: number }>;
     profits: Array<{ resource_type: string; amount_coef: number }>;
     bunny_workers_limit: number;
+    mfgt_profit?: number;
     image?: string;
   };
 }
@@ -35,6 +36,7 @@ const TaskEditForm: FC<TaskEditFormProps> = ({ initialData }) => {
       duration: { type: 'string', title: 'Длительность (в ISO формате)' },
       name: { type: 'string', title: 'Название задачи', minLength: 1 },
       description: { type: 'string', title: 'Описание задачи', minLength: 1 },
+      mfgt_profit: { type: 'number', title: 'MFGT прибыль' },
       requirements: {
         type: 'array',
         title: 'Требования',
@@ -99,6 +101,7 @@ const TaskEditForm: FC<TaskEditFormProps> = ({ initialData }) => {
       'name',
       'description',
       'bunny_workers_limit',
+      'mfgt_profit',
     ],
   };
 
@@ -128,6 +131,7 @@ const TaskEditForm: FC<TaskEditFormProps> = ({ initialData }) => {
         'bunny_workers_limit',
         String(formData.bunny_workers_limit || 0)
       );
+      data.append('mfgt_profit', String(formData.mfgt_profit || 0));
 
       // Преобразуем массивы в JSON
       data.append('requirements', JSON.stringify(formData.requirements || []));

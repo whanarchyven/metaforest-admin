@@ -31,6 +31,7 @@ const TaskCreateForm: FC<TaskCreateFormProps> = ({ buildingIdx }) => {
       },
       name: { type: 'string', title: 'Название задачи', minLength: 1 },
       description: { type: 'string', title: 'Описание задачи', minLength: 1 },
+      mfgt_profit: { type: 'number', title: 'MFGT прибыль' },
       requirements: {
         type: 'array',
         title: 'Требования',
@@ -96,6 +97,7 @@ const TaskCreateForm: FC<TaskCreateFormProps> = ({ buildingIdx }) => {
       'name',
       'description',
       'bunny_workers_limit',
+      'mfgt_profit',
     ],
   };
 
@@ -127,6 +129,7 @@ const TaskCreateForm: FC<TaskCreateFormProps> = ({ buildingIdx }) => {
         'bunny_workers_limit',
         String(formData.bunny_workers_limit || 0)
       );
+      data.append('mfgt_profit', String(formData.mfgt_profit || 0));
 
       // Добавляем требования (requirements)
       if (formData.requirements && Array.isArray(formData.requirements)) {

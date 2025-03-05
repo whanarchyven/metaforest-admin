@@ -5,7 +5,7 @@ import { parseISODuration } from '@/shared/utils/parseISODuration';
 import ProgressBar from '@/shared/ui/ProgressBar';
 import Button from '@/shared/ui/Button/Button';
 import { IMetaforestResourceTask } from '@/shared/types/backend/MetaforestResourceTask/types/MetaforestBuildTask';
-
+import DeleteBtn from '@/features/delete-btn';
 interface ResourceTaskInterface {
   task: IMetaforestResourceTask;
 }
@@ -80,6 +80,7 @@ const ResourceTask: FC<ResourceTaskInterface> = ({ task }) => {
           <p className={'text-base font-bold'}>
             Статус: {task.is_available ? 'активен' : 'неактивен'}
           </p>
+          <DeleteBtn deleteFunc={'deleteResourceTask'} idx={task.idx} />
           {/*<Button>Снять</Button>*/}
         </div>
       </div>

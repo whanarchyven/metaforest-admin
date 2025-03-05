@@ -57,6 +57,10 @@ const BuildingTaskCreateForm: FC<BuildingTaskCreateFormProps> = ({
         type: 'number',
         title: 'Очки выгоды на игрока',
       },
+      mfgt_profit: {
+        type: 'number',
+        title: 'MFGT прибыль',
+      },
       requirements: {
         type: 'array',
         title: 'Требования',
@@ -119,6 +123,7 @@ const BuildingTaskCreateForm: FC<BuildingTaskCreateFormProps> = ({
       'progress_per_player',
       'total_progress',
       'benefit_points_per_player',
+      'mfgt_profit',
     ],
   };
 
@@ -148,6 +153,7 @@ const BuildingTaskCreateForm: FC<BuildingTaskCreateFormProps> = ({
           progress_per_player: String(formData.progress_per_player),
           total_progress: String(formData.total_progress),
           benefit_points_per_player: String(formData.benefit_points_per_player),
+          mfgt_profit: String(formData.mfgt_profit),
           requirements: JSON.stringify(formData.requirements || []),
           profits: JSON.stringify(formData.profits || []),
         }

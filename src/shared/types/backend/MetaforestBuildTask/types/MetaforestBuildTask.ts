@@ -20,5 +20,6 @@ export interface IMetaforestBuildTask {
   total_progress: number;
   current_progress: number;
   exp_profit: number;
+  mfgt_profit: number;
   type: string;
 }

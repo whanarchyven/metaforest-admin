@@ -32,6 +32,10 @@ const UpgradeTaskCreateForm: FC<UpgradeTaskCreateFormProps> = ({
         type: 'number',
         title: 'Очки выгоды на игрока',
       },
+      mfgt_profit: {
+        type: 'number',
+        title: 'MFGT прибыль',
+      },
       requirements: {
         type: 'array',
         title: 'Требования',
@@ -41,7 +45,7 @@ const UpgradeTaskCreateForm: FC<UpgradeTaskCreateFormProps> = ({
             resource_type: {
               type: 'string',
               title: 'Тип ресурса',
-              enum: ['wood', 'stone', 'ether', 'carrots'],
+              enum: ['wood', 'stone', 'ether', 'carrots', 'timber', 'iron', 'cake', 'beer', 'wheat'],
             },
             amount: { type: 'number', title: 'Количество' },
           },
@@ -56,7 +60,7 @@ const UpgradeTaskCreateForm: FC<UpgradeTaskCreateFormProps> = ({
             resource_type: {
               type: 'string',
               title: 'Тип ресурса',
-              enum: ['wood', 'stone', 'ether', 'carrots'],
+              enum: ['wood', 'stone', 'ether', 'carrots', 'timber', 'iron', 'cake', 'beer', 'wheat'],
             },
             amount: { type: 'number', title: 'Количество' },
           },
@@ -72,6 +76,7 @@ const UpgradeTaskCreateForm: FC<UpgradeTaskCreateFormProps> = ({
       'progress_per_player',
       'total_progress',
       'benefit_points_per_player',
+      'mfgt_profit',
     ],
   };
 
@@ -93,6 +98,7 @@ const UpgradeTaskCreateForm: FC<UpgradeTaskCreateFormProps> = ({
         progress_per_player: String(formData.progress_per_player),
         total_progress: String(formData.total_progress),
         benefit_points_per_player: String(formData.benefit_points_per_player),
+        mfgt_profit: String(formData.mfgt_profit),
         requirements: JSON.stringify(formData.requirements || []),
         profits: JSON.stringify(formData.profits || []),
       });

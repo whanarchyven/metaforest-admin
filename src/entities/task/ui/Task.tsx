@@ -15,6 +15,7 @@ const Task: FC<IMetaforestTask> = ({
   type,
   profits,
   exp_profit,
+  mfgt_profit,
   building_idx,
   duration,
   bunny_workers_limit,
@@ -45,6 +46,9 @@ const Task: FC<IMetaforestTask> = ({
             </p>
             <p className={cvaTextRow()}>
               <strong>прирост опыта:</strong> {exp_profit} EXP
+            </p>
+            <p className={cvaTextRow()}>
+              <strong>MFGT прибыль:</strong> {mfgt_profit} MFGT
             </p>
             <p className={cvaTextRow()}>
               <strong>лимит работников</strong> {bunny_workers_limit}

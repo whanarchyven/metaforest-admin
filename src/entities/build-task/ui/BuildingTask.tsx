@@ -3,7 +3,7 @@ import { IMetaforestBuildTask } from '@/shared/types/backend/MetaforestBuildTask
 import { cva } from 'class-variance-authority';
 import { parseISODuration } from '@/shared/utils/parseISODuration';
 import ProgressBar from '@/shared/ui/ProgressBar';
-import Button from '@/shared/ui/Button/Button';
+import DeleteBtn from '@/features/delete-btn';
 
 interface BuildTaskInterface {
   task: IMetaforestBuildTask;
@@ -80,6 +80,10 @@ const BuildingTask: FC<BuildTaskInterface> = ({ task }) => {
             {task.exp_profit}
           </p>
           <p className={'text-sm'}>
+            <strong>MFGT прибыль: </strong>
+            {task.mfgt_profit}
+          </p>
+          <p className={'text-sm'}>
             <strong>Тип здания: </strong>
             {task.building_type}
           </p>
@@ -97,7 +101,11 @@ const BuildingTask: FC<BuildTaskInterface> = ({ task }) => {
           <p className={'text-base font-bold'}>
             Статус: {task.is_available ? 'активен' : 'неактивен'}
           </p>
-          {/*<Button>Снять</Button>*/}
+          {task.building_idx ? (
+            <DeleteBtn deleteFunc={'revertUpgradeTask'} idx={task.building_idx} />
+          ) : (
+            <DeleteBtn deleteFunc={'deleteBuildingTask'} idx={task.idx} />
+          )}
         </div>
       </div>
     </div>
