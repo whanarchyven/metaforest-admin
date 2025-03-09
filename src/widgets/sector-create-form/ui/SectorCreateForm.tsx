@@ -14,6 +14,7 @@ const SectorCreateForm: FC = () => {
     type: 'object',
     properties: {
       name: { type: 'string', title: 'Название сектора', minLength: 1 },
+      numberIdx: { type: 'number', title: 'Номер сектора', minimum: 0 },
       type: {
         type: 'string',
         title: 'Тип сектора',
@@ -28,7 +29,7 @@ const SectorCreateForm: FC = () => {
         ], // Значения выпадающего списка
       },
     },
-    required: ['name', 'type'], // Обязательные поля
+    required: ['name', 'type', 'numberIdx'], // Обязательные поля
   };
 
   const [formData, setFormData] = useState({}); // Состояние данных формы

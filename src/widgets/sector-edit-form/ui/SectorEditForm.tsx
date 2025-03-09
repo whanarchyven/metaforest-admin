@@ -32,6 +32,7 @@ const SectorEditForm: FC<SectorEditFormProps> = ({ initialData }) => {
     type: 'object',
     properties: {
       name: { type: 'string', title: 'Название сектора', minLength: 1 },
+      numberIdx: { type: 'number', title: 'Номер сектора', minimum: 0 },
       type: {
         type: 'string',
         title: 'Тип сектора',
@@ -60,7 +61,7 @@ const SectorEditForm: FC<SectorEditFormProps> = ({ initialData }) => {
         title: 'Изображение (если нужно обновить)',
       },
     },
-    required: ['name', 'type', 'authority', 'level'], // Обязательные поля
+    required: ['name', 'type', 'authority', 'level', 'numberIdx'], // Обязательные поля
   };
 
   const uiSchema = {
@@ -74,6 +75,7 @@ const SectorEditForm: FC<SectorEditFormProps> = ({ initialData }) => {
     type: initialData.type,
     authority: initialData.authority,
     level: initialData.level,
+    numberIdx: initialData.numberIdx,
     image: undefined, // Не передаем текущее изображение, так как оно доступно только для обновления
   });
 
@@ -86,6 +88,7 @@ const SectorEditForm: FC<SectorEditFormProps> = ({ initialData }) => {
       // Добавляем основные поля
       data.append('name', formData.name || '');
       data.append('type', formData.type || '');
+      data.append('numberIdx', String(formData.numberIdx || 0));
 
       // Преобразуем authority в JSON-строку
       data.append(

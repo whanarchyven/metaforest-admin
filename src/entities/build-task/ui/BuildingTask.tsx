@@ -102,7 +102,10 @@ const BuildingTask: FC<BuildTaskInterface> = ({ task }) => {
             Статус: {task.is_available ? 'активен' : 'неактивен'}
           </p>
           {task.building_idx ? (
-            <DeleteBtn deleteFunc={'revertUpgradeTask'} idx={task.building_idx} />
+            <DeleteBtn
+              deleteFunc={'revertUpgradeTask'}
+              idx={task.building_idx}
+            />
           ) : (
             <DeleteBtn deleteFunc={'deleteBuildingTask'} idx={task.idx} />
           )}
