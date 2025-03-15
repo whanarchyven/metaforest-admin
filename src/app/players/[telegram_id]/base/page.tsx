@@ -21,6 +21,22 @@ export default async function Home({
 
   const session = await getGameSession(telegram_id);
 
+  const attributes = session.activeBunny.deployedNftWithTrait.attributes.filter(
+    (attribute) => {
+      if (
+        attribute.trait_type === 'str' ||
+        attribute.trait_type === 'vit' ||
+        attribute.trait_type === 'int' ||
+        attribute.trait_type === 'dex' ||
+        attribute.trait_type === 'krm'
+      ) {
+        return attribute;
+      }
+    }
+  );
+
+  console.log(attributes);
+
   return (
     <>
       <main key={telegram_id} className={cvaRoot()}>
@@ -33,6 +49,13 @@ export default async function Home({
             bunnies={session.bunnies}
             activeBunny={session.activeBunny}
           />
+        </div>
+        <div className={'flex items-center mb-3 gap-2'}>
+          {attributes.map((attribute) => (
+            <p className={'text-sm'} key={attribute.trait_type}>
+              {attribute.trait_type}: {attribute.value}
+            </p>
+          ))}
         </div>
         <BaseParamsForm
           session={session}
